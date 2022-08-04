@@ -48,15 +48,15 @@
             <p>
             With signed embedding, all embedded charts and dashboards have to be signed using a secret key. This should be done on your server, and allows you to embed dashboards filtered down to a specific user, organization or account. For example, we can take the same dashboard above and embed it. Additionally, it is easy to provide a per-user dashboard like you will see if you follow this link and log in with user: "admin" and password "admin"
             </p>
-            <a href="/signed_dashboard/2">An example of a specific User's dashboard</a>
+            <a href="/private_dashboard">An example of a specific User's dashboard</a>
 
             <p>If you want to just embed a single chart, you can do that too. See the below example, which embeds chart #1, limited to user #1.</p>
-            <a href="/signed_chart/2">An example of a specific User's chart</a>
+            <a href="/private_chart">An example of a specific User's chart</a>
 
             <p>
                 We can also embed signed dashboards that are not limited to a single user. The below is a dashboard that can only be displayed if the embedding application signs the url with our secret key and can only be used in that application. 
             </p>
-            <a href="/signed_public_dashboard">An example of a public signed dashboard</a>
+            <a href="/public_dashboard">An example of a public signed dashboard</a>
         </section>
     </article>
 {% endblock %}

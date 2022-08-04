@@ -140,3 +140,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL="/"
+
+
+# Default Matebase url
+# Default Metabase primary key
+
+METABASE_SITE_URL = "localhost:3000"
+METABASE_SECRET_KEY = "79db1033bbd08dd6167bbdd6c5630ba0774a23fd6aaa272f32915c87d8271f39"
+
