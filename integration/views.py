@@ -42,12 +42,10 @@ def get_dashboard(request,id):
                      for data in response.json()['ordered_cards']]
     iframeUrl = METABASE_SITE_URL + "/embed/dashboard/" + get_token(payload) + "#bordered=true"
     return render(request,
-                  'user_stats/public_dashboard.html',
+                  'user_stats/show_dashboard.html',
                   {'iframeUrl': iframeUrl,'card_data':card_data})
 
 class CardView(View):
-
-    previous_url = reverse_lazy('index')
 
     def get(self,request,id):
         payload = {
@@ -65,24 +63,25 @@ class CardView(View):
         html = html.replace("</body>","")
         #print(html[:1000])
         return render(request,
-                    'user_stats/public_dashboard.html',
-                    {'iframeUrl': iframeUrl,'previous_url':self.previous_url}) 
+                    'user_stats/show_chart.html',
+                    {'iframeUrl': iframeUrl}) 
 
 
-class PublicDashboardView(View):
+class ListDashboardView(View):
     previous_url = reverse_lazy('index')
     def get(self,request):
         dashboardUrl = METABASE_SITE_URL + "/api/dashboard"
         session_id = get_session("franklinteste00@gmail.com","Nilknarf-0")
         response = requests.get(dashboardUrl,headers={'X-Metabase-Session':session_id})
-        data = []
+        dashboard_data = []
         for dashboard in response.json():
-            data.append({'id':dashboard['id'],'name':dashboard['name']})
+            dashboard_data.append({'id':dashboard['id'],'name':dashboard['name']})
 
 
         return render(request,
-                    'user_stats/public_dashboard.html',
-                    {'data':data,'previous_url':self.previous_url}) 
+                    'user_stats/show_dashboard.html',
+                    {'dashboard_data':dashboard_data,'previous_url':self.previous_url})
+                    
 
 
 # def public_dashboard(request):
@@ -90,13 +89,13 @@ class PublicDashboardView(View):
 #     dashboardUrl = METABASE_SITE_URL + "/api/dashboard"
 #     session_id = get_session("franklinteste00@gmail.com","Nilknarf-0")
 #     response = requests.get(dashboardUrl,headers={'X-Metabase-Session':session_id})
-#     data = []
+#     data = []public_dashboard
 #     for dashboard in response.json():
 #         data.append({'id':dashboard['id'],'name':dashboard['name']})
 
 
 #     return render(request,
-#                   'user_stats/public_dashboard.html',
+#                   'user_stats/show_dashboard.html',
 #                   {'data':data}) 
 @login_required
 def private_chart(request):

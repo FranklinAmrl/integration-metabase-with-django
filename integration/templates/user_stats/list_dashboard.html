@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
+    <a href="{{previous_url}}">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAACkklEQVRYhe2WT0jTYRjHP89wmw5D6OJBkELwUliBoBJdjEAzwiKjQ5RWFAXhoYZCFy/V8mIdTOogGnQpUpeusIOVk9Awiyw6mbhA8mIKNXOzPR3a7Ld/bnPtlN/Ty/f98/3wvs/78sKGNvS/S+L2dI3VQOA2iBX0LPUVjzMBYIrpdo5VgvaAFAL5IB2ZCAfIinK6R0tQ7QEsq57gzxRA+A7cGy9EeQLkGdwAyqVMAfytgTvjeVhXhoES44Asj8dlfTPhTn1lUYS5XyZ1/3zk+JwYoGu0F6gNC5+awjI5mXJ2jBB3QMW+5Lw+FtlnPIJ9YZO8XiwfP6QdDqCwR0RHbLVN59cA0Gdhk2w2fNu2/xOAoLJA2nNqm44azcQ1MDPz3Pzu7euU41QFpFSgMrxD5i1Yixb6WhbCAeDPLQisvAIKjEuBHqO+4kHKEEDOoeY6Ue4D5lUEpfmH03EDIq/hiVIPwn5g0YgM0raecIClXsdD4JrRU+FgqB39Ep4sf09ADgO+9YZGKRC4G+EUxwcAOFU2hOoR4Aswi8i5dPK9m23zYYaSG2pGP8UhNVT0A/3pBIeUvbhcFmYIs4kBDFJF/AOcQbADW4BpoMNcwy0RdM3JdS0Wk3/pZkS9D6cE4HPRKsJlg1UMtPlcFAD2mJOqL1qzs3PLg+E7jV0m6A614/8HQuH97ECYAEyDniIaR6r46t2UDHc8Ob19jtUnP3YRGiSwNzSu0Z12+CeznwajkRDAKF37tBPJafaze9Hl+GY0E9aAmhhCUUCu7nrKlYlq5paT2oVl0FmQlybo/t7neBFrUMIaAPAN0A5cUAWvF/zB/5HCYP5xqpJZI56SAghCnEaxI2xFmUZotRygM53wDW0I4DcNZsmYnFVbKgAAAABJRU5ErkJggg==">
+    </a>
+    <h1>
+        Yours Dashboards Collections
+    </h1>
+    <div class="card">
+        <div class="card-header">
+            Name
+        </div>
+        {% for dashboard in dashboard_data %}
+        <ul class="clickable-row list-group list-group-flush" data-href="{% url 'get_dashboard' dashboard.id  %}">
+            <li class="list-group-item"><a href="{% url 'get_dashboard' dashboard.id  %}">{{dashboard.name}}</a></li>
+        </ul>
+        {% endfor %}
+    </div>
+    <div class="card">
+        {% for card in card_data %}
+        <ul class="clickable-row list-group list-group-flush" data-href="{% url 'show_card' card.id  %}">
+            <li class="list-group-item"><a href="{% url 'show_card' card.id  %}">{{card.name}}</a></li>
+        </ul>
+        {% endfor %}
+    </div>
+    
+    {% if iframeUrl %}
+        <div class="videoWrapper">
+            <iframe
+                src="{{iframeUrl}}" 
+                width="1200" 
+                height="800" 
+                frameborder="0"
+                >        			
+            </iframe>
+        </div>
+    {% endif %}
+    <script>
+        jQuery(document).ready(function($) {
+            $(".clickable-row").click(function() {
+                window.location = $(this).data("href");
+            });
+        });
+    </script>
+
+    <style>
+        .clickable-row {
+            cursor: pointer;
+        }
+        
+        .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+            background-color: #a52a2a;
+          }
+
+        
+    </style>
+    {% bootstrap_javascript jquery='full' %}
+{% endblock %}

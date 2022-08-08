@@ -10,62 +10,67 @@
     <link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet">
   </head>
   <body>
-    <header class="navbar navbar-expand flex-column flex-md-row bd-navbar">
+    <header style="background: #509ee3" class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
         <div class="navbar-nav-scroll">
           <ul class="navbar-nav bd-navbar-nav flex-row">
             <li class="nav-item">
                 <a class="navbar-brand" href="{% url 'index' %}">Metabase</a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Docs');">Documentation</a>
+              <a class="nav-link active" href="#">Documentation</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="/docs/4.0/examples/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Examples');">Examples</a>
+              <a class="nav-link " href="{% url 'show_dashboard' %}">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Themes');" target="_blank" rel="noopener">Themes</a>
+              <a class="nav-link" href="#">Cards</a>
             </li>
           </ul>
         </div>
       </header>
     <div class="container-fluid">
         <div class="row flex-xl-nowrap">
-            <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
-                <nav class="bd-links">
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link">Menu</a>
+            <div style="background: #f4f7ff; min-height: calc(100vh - 56px); border-right: 1px solid #d0d0d0;" class="col-3 col-md-3 col-xl-2 bd-sidebar">
+                <nav class="card-body bd-links">
+                    <div style="border-bottom: 1px solid #d0d0d0;" class="bd-toc-item">
+                        <a class="bd-toc-link" href="{% url 'index' %}">Menu</a>
+                    </div>
+                    <div style="padding-top: 1rem;" class="bd-toc-item">
+                        <a class="bd-toc-link" href="{% url 'show_dashboard' %}">Show Collections</a>
                     </div>
                     <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="{% url 'public_dashboard' %}">Publico</a>
-                    </div>
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link"  href="{% url 'private_dashboard' %}">Privado</a>
+                        <a class="bd-toc-link"  href="{% url 'private_dashboard' %}">Private Collections</a>
                     </div>
                 </nav>
             </div>
-            {% comment %}             
-            <div class="col-lg-3 md-3 sm-1">
-                <div class="card border-light mb-9">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <ul>
-                            <li>
-                                <p>Coleções</ap>
-                            </li>
-                            <li>
-                                <a class ="nav-link" href="{% url 'public_dashboard' %}"> Público </a>
-                            </li>
-                            <li>
-                                <a class ="nav-link" href="{% url 'private_dashboard' %}"> Privado </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div> {% endcomment %}
-            <div class="col-lg-9 col-md-6 sm-12">
+            <main class="col-9 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content">
                 {% block content %}{% endblock %}   
-            </div>
+            </main>
         </div>        
     </div>
+    <style>
+        h1, a {
+            color: #4c5773;
+        }
+    
+        p {
+            color: #70747d;
+        }
+        .videoWrapper {
+          position: relative;
+          padding-bottom: 56.25%; /* 16:9 */
+          padding-top: 25px;
+          height: 0;
+        }
+        .videoWrapper iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+    </style>
     {% bootstrap_javascript jquery='full' %}
   </body>
 </html>
