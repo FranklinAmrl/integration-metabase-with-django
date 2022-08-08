@@ -69,7 +69,7 @@ class CardView(View):
                     {'iframeUrl': iframeUrl,'previous_url':self.previous_url}) 
 
 
-class DashboardView(View):
+class PublicDashboardView(View):
     previous_url = reverse_lazy('index')
     def get(self,request):
         dashboardUrl = METABASE_SITE_URL + "/api/dashboard"

@@ -10,16 +10,61 @@
     <link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet">
   </head>
   <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{% url 'index' %}">Metabase</a>
-
-        </nav>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{% url 'index' %}">Metabase</a>
-
-        </nav>
-      {% block content %}{% endblock %}
+    <header class="navbar navbar-expand flex-column flex-md-row bd-navbar">
+        <div class="navbar-nav-scroll">
+          <ul class="navbar-nav bd-navbar-nav flex-row">
+            <li class="nav-item">
+                <a class="navbar-brand" href="{% url 'index' %}">Metabase</a> 
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Docs');">Documentation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="/docs/4.0/examples/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Examples');">Examples</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Themes');" target="_blank" rel="noopener">Themes</a>
+            </li>
+          </ul>
+        </div>
+      </header>
+    <div class="container-fluid">
+        <div class="row flex-xl-nowrap">
+            <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
+                <nav class="bd-links">
+                    <div class="bd-toc-item">
+                        <a class="bd-toc-link">Menu</a>
+                    </div>
+                    <div class="bd-toc-item">
+                        <a class="bd-toc-link" href="{% url 'public_dashboard' %}">Publico</a>
+                    </div>
+                    <div class="bd-toc-item">
+                        <a class="bd-toc-link"  href="{% url 'private_dashboard' %}">Privado</a>
+                    </div>
+                </nav>
+            </div>
+            {% comment %}             
+            <div class="col-lg-3 md-3 sm-1">
+                <div class="card border-light mb-9">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <ul>
+                            <li>
+                                <p>Coleções</ap>
+                            </li>
+                            <li>
+                                <a class ="nav-link" href="{% url 'public_dashboard' %}"> Público </a>
+                            </li>
+                            <li>
+                                <a class ="nav-link" href="{% url 'private_dashboard' %}"> Privado </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div> {% endcomment %}
+            <div class="col-lg-9 col-md-6 sm-12">
+                {% block content %}{% endblock %}   
+            </div>
+        </div>        
     </div>
     {% bootstrap_javascript jquery='full' %}
   </body>
