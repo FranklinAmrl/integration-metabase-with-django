@@ -6,6 +6,8 @@ import jwt
 from django.contrib.auth.decorators import login_required
 from django.views import View
 
+from django.views.generic import TemplateView
+
 from config.settings import METABASE_SECRET_KEY, METABASE_SITE_URL
 
 
@@ -21,10 +23,9 @@ def get_session(username,password):
     session = response.json().get("id")
     return session
 
-def index(request):
-    return render(request,
-                  'user_stats/index.html',
-                  {})
+class IndexView(TemplateView):
+
+    template_name = 'user_stats/index.html'
 
 
 def get_dashboard(request,id):
@@ -56,6 +57,13 @@ class CardView(View):
             }
         }
         iframeUrl = METABASE_SITE_URL + "/embed/question/" + get_token(payload) + "#bordered=true"
+        response = requests.get(iframeUrl)
+        print(iframeUrl)
+        #print(response.text)
+        html = response.text
+        html = html.replace("<body>","")
+        html = html.replace("</body>","")
+        #print(html[:1000])
         return render(request,
                     'user_stats/public_dashboard.html',
                     {'iframeUrl': iframeUrl,'previous_url':self.previous_url}) 

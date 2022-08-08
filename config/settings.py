@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'integration',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount'
+    'allauth.socialaccount',
+    'bootstrap4'
 ]
 
 MIDDLEWARE = [
@@ -145,6 +146,7 @@ LOGIN_REDIRECT_URL="/"
 # Default Matebase url
 # Default Metabase primary key
 
-METABASE_SITE_URL = "https://4bb0-179-124-140-73.sa.ngrok.io"
+METABASE_SITE_URL = "http://localhost:3000"
+#METABASE_SITE_URL = "https://6dc5-179-124-140-73.sa.ngrok.io"
 METABASE_SECRET_KEY = "79db1033bbd08dd6167bbdd6c5630ba0774a23fd6aaa272f32915c87d8271f39"
 
