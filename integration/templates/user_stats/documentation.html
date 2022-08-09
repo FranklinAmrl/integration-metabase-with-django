@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
+    <h1>
+        Documentation
+    </h1>
+    <div class="card-content">
+        <div class="card-header">
+            Get Started
+        </div>
+    </div>
+    <div class="card">
+        <ul class="clickable-row list-group list-group-flush" data-href="{{ url_doc }}" target="_blank">
+            <li class="list-group-item"><a target="_blank" href="{{ url_doc }}"></a>Click here to redirect</li>
+        </ul>
+    </div>
+    <div class="card">
+    </div>
+    <script>
+        jQuery(document).ready(function($) {
+            $(".clickable-row").click(function() {
+                window.location = $(this).data("href");
+            });
+        });
+    </script>
+
+    <style>
+        .clickable-row {
+            cursor: pointer;
+        }
+        
+        .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+            background-color: #a52a2a;
+          }
+
+        
+    </style>
+    {% bootstrap_javascript jquery='full' %}
+{% endblock %}

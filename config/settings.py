@@ -147,6 +147,7 @@ LOGIN_REDIRECT_URL="/"
 # Default Metabase primary key
 
 METABASE_SITE_URL = "http://localhost:3000"
+METABASE_DOC_URL = "https://drive.google.com/drive/folders/1billhfQ1_L8FOWA2YyozWpnfoHX38Qso"
 #METABASE_SITE_URL = "https://6dc5-179-124-140-73.sa.ngrok.io"
 METABASE_SECRET_KEY = "79db1033bbd08dd6167bbdd6c5630ba0774a23fd6aaa272f32915c87d8271f39"
 
